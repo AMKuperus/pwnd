@@ -18,12 +18,12 @@ func main() {
 	if *cmdpass != "" {
 		pass := pwnd.Password{Word: *cmdpass}
 		pass.Check()
-		if !pass.Found && pass.Error == nil {
+		if !pass.Found() && pass.Error == nil {
 			//Found nothing
 			fmt.Printf("Found nothing\n")
 		}
 		// check Error
-		fmt.Printf("%s - %d\n", color.CyanString(pass.Word), pass.Value)
+		fmt.Printf("%s - %d\n", color.CyanString(pass.Word), pass.Value())
 	}
 
 	if *cmdemail != "" {
