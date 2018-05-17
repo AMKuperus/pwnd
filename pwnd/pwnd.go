@@ -38,9 +38,6 @@ func requestpassword(input string) int {
 
 	var ret int
 	switch resp.StatusCode {
-	case 404:
-		//Not found — the password was not found in the Pwned Passwords repository
-		ret = 0
 	case 200:
 		//Ok — the password was found in the Pwned Passwords repository and is
 		//returned with a count of its prevalence
@@ -60,6 +57,9 @@ func requestpassword(input string) int {
 		//protocol will not allow a connection to be made.
 		fmt.Printf("%s %s\n", color.RedString("Error cannot make request, https missing"), err.Error())
 		ret = -1
+	case 404:
+		//Not found — the password was not found in the Pwned Passwords repository
+		ret = 0
 	default:
 		ret = -1
 	}
