@@ -15,7 +15,7 @@ func main() {
 
 	// TODO improve flag processing -> call -> return
 	if *cmdpass != "" {
-		fmt.Printf("%s\n", pwnd.Checkpassword(*cmdpass))
+		fmt.Printf("%v\n", pwnd.Checkpassword(*cmdpass))
 	}
 	if *cmdemail != "" {
 		fmt.Printf("%s\n", pwnd.Checkemail(*cmdemail))
