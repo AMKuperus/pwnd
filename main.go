@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/AMKuperus/pwnd/pwnd"
+	"github.com/fatih/color"
 )
 
 func main() {
@@ -15,8 +16,16 @@ func main() {
 
 	// TODO improve flag processing -> call -> return
 	if *cmdpass != "" {
-		fmt.Printf("%v\n", pwnd.Checkpassword(*cmdpass))
+		pass := pwnd.Password{Word: *cmdpass}
+		pass.Check()
+		if !pass.Found && pass.Error == nil {
+			//Found nothing
+			fmt.Printf("Found nothing\n")
+		}
+		// check Error
+		fmt.Printf("%s - %d\n", color.CyanString(pass.Word), pass.Value)
 	}
+
 	if *cmdemail != "" {
 		fmt.Printf("%s\n", pwnd.Checkemail(*cmdemail))
 	}

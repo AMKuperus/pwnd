@@ -2,42 +2,26 @@ package pwnd
 
 import (
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"strconv"
-
-	"github.com/fatih/color"
 )
 
 // TODO func fetchapi haveIbeenpwnd
-// TODO struct for returned passworddata
-// TODO methods for passworddata
 // TODO struct for returned emaildata
 // TODO methods for emaildata
 
-// Checkpassword makes password check request
-func Checkpassword(pass string) (int, error) {
-	// TODO check returne value form request to be -1/0/?
-	ret := requestpassword(pass)
-	if ret < 0 {
-		err := fmt.Errorf("%s", color.RedString("Error"))
-		return -1, err
-	}
-	return ret, nil
-}
-
+// Checkemail TODO
 func Checkemail(email string) string {
 	// TODO apirequest -> fetch data -> make object -> process data -> return data.
 	ret := fmt.Sprintf("Email to look for: %s", email)
 	return ret
 }
 
-func requestpassword(input string) int {
+/*func requestpassword(input string) int {
 	request := fmt.Sprintf("https://api.pwnedpasswords.com/pwnedpassword/%s", input)
 	fmt.Printf("Request: %s\n", color.GreenString(request))
 	resp, err := http.Get(request)
 	if err != nil {
-		fmt.Printf("%s %s\n", color.RedString("Error making HTTP-requets:"), err.Error())
+		fmt.Printf("%s %s\n", color.RedString("Error making HTTP-request:"), err.Error())
+		return -1
 	}
 	defer resp.Body.Close()
 
@@ -49,6 +33,7 @@ func requestpassword(input string) int {
 		data, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			fmt.Printf("%s %s\n", color.RedString("Error reading data from reponse:"), err.Error())
+			return -1
 		}
 		ret, err = strconv.Atoi(string(data))
 		if err != nil {
@@ -69,4 +54,4 @@ func requestpassword(input string) int {
 		ret = -1
 	}
 	return ret
-}
+}*/
