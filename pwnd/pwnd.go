@@ -15,10 +15,15 @@ import (
 // TODO struct for returned emaildata
 // TODO methods for emaildata
 
-func Checkpassword(pass string) int {
-	// TODO apirequest -> fetch data -> make object -> process data -> return data.
+// Checkpassword makes password check request
+func Checkpassword(pass string) (int, error) {
+	// TODO check returne value form request to be -1/0/?
 	ret := requestpassword(pass)
-	return ret
+	if ret < 0 {
+		err := fmt.Errorf("%s", color.RedString("Error"))
+		return -1, err
+	}
+	return ret, nil
 }
 
 func Checkemail(email string) string {
