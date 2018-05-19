@@ -10,4 +10,4 @@ Start a browser and go to:
 ```
 localhost:8080/assets/
 ```
-![PWND Webui-screenshot](https://amkuperus.nl/images/PWND_Screenshot_19052018.png "Optional PWND Webui screenshot")
+![PWND Webui-screenshot](https://amkuperus.nl/images/PWND_Screenshot_19052018.png "PWND Webui screenshot")
