@@ -1,14 +1,32 @@
 package main
 
 import (
-	"flag"
-	"fmt"
+	"net/http"
 
-	"github.com/AMKuperus/pwnd/pwnd"
-	"github.com/fatih/color"
+	"github.com/gorilla/mux"
 )
 
+func newRouter() *mux.Router {
+	r := mux.NewRouter()
+	r.HandleFunc("/hello", handler)
+
+	staticFileDirectory := http.Dir("./assets/")
+	staticFileHandler := http.StripPrefix("/assets/", http.FileServer(staticFileDirectory))
+
+	r.PathPrefix("/assets/").Handler(staticFileHandler).Methods("GET")
+
+	r.HandleFunc("/answer", checkPasswordHandler).Methods("POST")
+	r.HandleFunc("/answer", getPasswordAnswerHandler).Methods("GET")
+
+	return r
+}
+
 func main() {
+	r := newRouter()
+	http.ListenAndServe(":8080", r)
+}
+
+/*func main() {
 	// TODO make better flags
 	cmdpass := flag.String("pass", "", "Search Have I been pwnd for a password.")
 	cmdemail := flag.String("email", "", "Search Have I been pwnd for a email")
@@ -29,7 +47,7 @@ func main() {
 	if *cmdemail != "" {
 		fmt.Printf("%s\n", pwnd.Checkemail(*cmdemail))
 	}
-}
+}*/
 
 // TODO API-Request
 // TODO NICETOHAVE GUI / Webinterface
