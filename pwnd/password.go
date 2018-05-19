@@ -12,10 +12,10 @@ import (
 
 // Password holds information gathered for password
 type Password struct {
-	Word  string `json:"password"`
-	found bool   `json:"found"`
-	value int    `json:"value,omitempty"`
-	Error error  `json:"error,omitempty"`
+	Word  string
+	found bool
+	value int
+	Error error
 }
 
 // Check requests password

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <!-- End external imports -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>PWND</title>
+</head>
+
+<body>
+  <div class="box">
+    <div class="jumbotron text-center">
+      <div class="pwndlogo">';--</div>
+      <h1 class="display-4">Have you been PWND?</h1>
+      <p class="lead">Check if you have been powned. This app checks the haveibeenpwned.com database.
+        This app stores nothing, it runs without a database, it only makes a API-request and returns the requested data.
+        Once the app is closed the data requested is lost.</p>
+      <hr class="my-4">
+      <div class="form-group">
+        <form action="/answer" method="POST">
+          <p>Enter a password</p>
+          <div class="row">
+            <input type="text" name="password" class="form-control col-10" required>
+            <input type="submit" value="Check" class="col btn btn-dark">
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
+<div class="container">
+  <!--<div class="row">-->
+    <div class="row justify-content-center answer"></div>
+  <!--</div>-->
+</div>
+<div class="fixed-bottom footer"><small>A <a href="https://www.amkuperus.nl">AMKuperus</a> Project</small></div>
+  <script>
+    data = document.querySelector(".answer")
+    fetch("/answer")
+    .then(response => response.json())
+    .then(passList => {
+      passList.forEach(password => {
+        par = document.createElement("div")
+        //par.style.backgroundColor = "rgba(255, 255, 255, 0.35)"
+        word = document.createElement("p")
+        word.innerHTML = password.password + " - " + password.value
+        if (!password.found) {
+          par.className = 'ans col-5 alert alert-success center'
+        } else {
+          par.className = 'ans col-5 alert alert-danger center'
+        }
+        par.appendChild(word)
+        data.appendChild(par)
+      })
+    })
+
+    </script>
+<!-- jQuery - popper.js - bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  </body>
+  </html>

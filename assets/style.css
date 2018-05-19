@@ -1,0 +1,53 @@
+body {
+  background-color: #789668;
+  font-family: arial;
+}
+
+.box {
+  margin: 3em;
+}
+
+.pwndlogo {
+  float: right;
+  line-height: 20px;
+  border-radius: 10px;
+  border: 2px solid #3f3f3f !important;
+  font-size: 1.4em;
+  padding: 4px 8px 7px;
+  margin: -0.5em;
+  font-weight: 700;
+  height: auto;
+}
+
+input[type=text] {
+  background-color: #3c3c3c;
+  color: #23E96B;
+  font-family: courier;
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+.answer {
+}
+
+.ans {
+  margin: 0.4em;
+}
+
+a {
+  color: #3f3f3f;
+  font-weight: 700;
+}
+
+.footer {
+    margin-left: 0.5em;
+}
+
+.footer a:hover {
+  color: #23E96B;
+  background-color: #3f3f3f;
+  text-decoration: none;
+  font-family: courier;
+}
