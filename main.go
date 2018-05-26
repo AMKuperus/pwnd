@@ -1,19 +1,23 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
+	"github.com/fatih/color"
 	"github.com/gorilla/mux"
 )
 
 func newRouter() *mux.Router {
 	r := mux.NewRouter()
-	r.HandleFunc("/hello", handler)
+	log.Printf("[%s]\n", color.YellowString("PWND starting server"))
 
 	staticFileDirectory := http.Dir("./assets/")
 	staticFileHandler := http.StripPrefix("/assets/", http.FileServer(staticFileDirectory))
 
 	r.PathPrefix("/assets/").Handler(staticFileHandler).Methods("GET")
+
+	//r.HandleFunc("/assets/", mainHandler)
 
 	r.HandleFunc("/answer", checkPasswordHandler).Methods("POST")
 	r.HandleFunc("/answer", getPasswordAnswerHandler).Methods("GET")

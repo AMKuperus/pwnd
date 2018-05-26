@@ -9,12 +9,13 @@ body {
 
 .pwndlogo {
   float: right;
+  margin-top: -2em;
   line-height: 20px;
   border-radius: 10px;
   border: 2px solid #3f3f3f !important;
   font-size: 1.4em;
   padding: 4px 8px 7px;
-  margin: -0.5em;
+  /*margin: -0.5em;*/
   font-weight: 700;
   height: auto;
 }
@@ -29,6 +30,17 @@ input[type=text] {
 .center {
   text-align: center;
 }
+
+.button-group {
+
+}
+
+.button-group-2 {
+  float: left;
+  margin-top: -2.5em;
+  margin-left: 0em;
+}
+
 .answer {
 }
 
