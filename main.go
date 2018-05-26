@@ -15,6 +15,8 @@ func newRouter() *mux.Router {
 
 	r.PathPrefix("/assets/").Handler(staticFileHandler).Methods("GET")
 
+	r.HandleFunc("/assets/", mainHandler)
+
 	r.HandleFunc("/answer", checkPasswordHandler).Methods("POST")
 	r.HandleFunc("/answer", getPasswordAnswerHandler).Methods("GET")
 

@@ -2,17 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/AMKuperus/pwnd/pwnd"
 	"github.com/fatih/color"
 )
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello from golang!")
-}
 
 type Answer struct {
 	Password string `json:"password"`
@@ -61,5 +56,5 @@ func checkPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	answers = append(answers, answer)
 	log.Printf("Found %s - %d\n", color.CyanString(pass.Word), pass.Value())
 	log.Printf("%#v", answer)
-	http.Redirect(w, r, "/assets/", http.StatusFound)
+	http.Redirect(w, r, "/assets/password.html", http.StatusFound)
 }
