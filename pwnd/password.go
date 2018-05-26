@@ -35,7 +35,8 @@ func (p *Password) Value() int {
 
 func (p *Password) request() {
 	request := fmt.Sprintf("https://api.pwnedpasswords.com/pwnedpassword/%s", p.Word)
-	log.Printf("Request: %s\n", color.GreenString(request))
+	//log.Printf("Request: %s\n", color.GreenString(request))
+	log.Printf("%s\n", color.GreenString("Received request"))
 
 	resp, err := http.Get(request)
 	if err != nil {

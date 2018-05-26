@@ -37,7 +37,7 @@ func checkPasswordHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	pass.Word = r.Form.Get("password")
-	log.Printf("Checking: %s\n", pass.Word)
+	//log.Printf("Checking: %s\n", pass.Word)
 	pass.Check()
 	if pass.Error != nil {
 		log.Printf("Error: %v\n", err)
@@ -54,7 +54,8 @@ func checkPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	answer.Found = pass.Found()
 	answer.Value = pass.Value()
 	answers = append(answers, answer)
-	log.Printf("Found %s - %d\n", color.CyanString(pass.Word), pass.Value())
-	log.Printf("%#v", answer)
+	//log.Printf("Found %s - %d\n", color.CyanString(pass.Word), pass.Value())
+	//log.Printf("%#v", answer)
+	log.Printf("%s\n", color.GreenString("Found the answer | End of this request."))
 	http.Redirect(w, r, "/assets/password.html", http.StatusFound)
 }
