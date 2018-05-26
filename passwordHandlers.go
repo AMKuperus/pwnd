@@ -9,8 +9,8 @@ import (
 	"github.com/fatih/color"
 )
 
+// Answer holds answer
 type Answer struct {
-	//Password string `json:"password"`
 	Found bool `json:"found"`
 	Value int  `json:"value"`
 }
@@ -40,7 +40,6 @@ func checkPasswordHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	pass.Word = r.Form.Get("password")
-	//log.Printf("Checking: %s\n", pass.Word)
 	pass.Check()
 	if pass.Error != nil {
 		log.Printf("Error: %v\n", err)
@@ -55,14 +54,11 @@ func checkPasswordHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("%s\n", color.GreenString("Found nothing | End of this request."))
 	} else {
 		answer := Answer{}
-		//answer.Password = pass.Word
 		answer.Found = pass.Found()
 		answer.Value = pass.Value()
 		answers = append(answers, answer)
-		//log.Printf("Found %s - %d\n", color.CyanString(pass.Word), pass.Value())
-		//log.Printf("%#v", answer)
 		log.Printf("%s\n", color.GreenString("Found the answer | End of this request."))
 	}
-	log.Printf("%#v\n", answers)
+	//log.Printf("%#v\n", answers)
 	http.Redirect(w, r, "/assets/password.html", http.StatusFound)
 }
